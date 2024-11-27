@@ -300,16 +300,14 @@
 <section id="peta-universitas-jember">
     <h1>Peta Universitas Jember</h1>
     <div id="map" style="height: 400px;"></div>
-    <script>
-        <div id="map" style="height: 400px;"></div>
-
-        var map = L.map('map').setView([-7.1872, 113.7069], 15); // Koordinat Universitas Jember
+       <script>
+        var map = L.map('map').setView([-8.170556, 113.705833], 15); // Koordinat Universitas Jember
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        L.marker([-7.1872, 113.7069]).addTo(map)
+        L.marker([-8.170556, 113.705833]).addTo(map)
             .bindPopup('Universitas Jember')
             .openPopup();
     </script>
