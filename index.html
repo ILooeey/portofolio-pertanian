@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <style>
-        /* CSS yang telah Anda tulis tetap dipertahankan */
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +23,86 @@
             color: #333;
         }
 
-        /* Gaya untuk tampilan elemen lainnya seperti header, footer, dll */
+        header {
+            background-color: #388e3c;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #a5d6a7;
+            transform: translateY(-3px);
+        }
+
+        section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        #camera-container {
+            margin-top: 40px;
+        }
+
+        #camera-video {
+            width: 100%;
+            max-width: 500px;
+            border: 2px solid #388e3c;
+            border-radius: 8px;
+        }
+
+        #upload-container {
+            margin-top: 20px;
+        }
+
+        #file-input {
+            padding: 10px;
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        #file-input:hover {
+            background-color: #2e7d32;
+        }
+
+        footer {
+            background-color: #388e3c;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 1rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            #camera-video {
+                max-width: 100%;
+            }
+        }
+
     </style>
 </head>
 
@@ -97,3 +175,4 @@
 </body>
 
 </html>
+s
