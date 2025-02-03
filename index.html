@@ -182,7 +182,7 @@
             #camera-video {
                 max-width: 100%;
             }
-            
+
             .penelitian-list {
                 flex-direction: column;
                 align-items: center;
@@ -225,6 +225,18 @@
         <img src="https://via.placeholder.com/800x400" alt="Tanaman Sehat" style="width: 100%; max-width: 800px; margin: 0 auto; display: block; border-radius: 8px; border: 2px solid #388e3c;">
     </section>
 
+    <!-- Kamera dan Unggah Gambar -->
+    <section id="camera-container">
+        <h1>Ingin mengetahui apakah tanaman Anda sehat?</h1>
+        <h2>Gunakan Fitur Kami!</h2>
+        <video id="camera-video" autoplay></video>
+
+        <!-- Tombol unggah gambar -->
+        <div id="upload-container">
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+    </section>
+
     <!-- Section Penelitian Pertanian -->
     <section id="penelitian-pertanian">
         <h1>Penelitian Pertanian Terbaru</h1>
@@ -264,18 +276,6 @@
                 .bindPopup('Universitas Jember')
                 .openPopup();
         </script>
-    </section>
-
-    <!-- Kamera dan Unggah Gambar -->
-    <section id="camera-container">
-        <h1>Ingin mengetahui apakah tanaman Anda sehat?</h1>
-        <h2>Gunakan Fitur Kami!</h2>
-        <video id="camera-video" autoplay></video>
-
-        <!-- Tombol unggah gambar -->
-        <div id="upload-container">
-            <input type="file" id="file-input" accept="image/*">
-        </div>
     </section>
 
     <!-- Footer -->
