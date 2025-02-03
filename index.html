@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    
-    <!-- Menambahkan link ke Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         * {
@@ -44,7 +41,7 @@
 
         nav ul li {
             margin-left: 20px;
-            position: relative;
+            position: relative; /* Menambahkan posisi relatif agar dropdown dapat bekerja */
         }
 
         nav ul li a {
@@ -60,9 +57,44 @@
             transform: translateY(-3px);
         }
 
+        /* Dropdown Menu */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #388e3c;
+            top: 100%;
+            left: 0;
+            list-style-type: none;
+            padding: 10px;
+            margin-top: 5px;
+            min-width: 180px;
+            border-radius: 8px;
+            opacity: 0; /* Menambahkan transisi */
+            visibility: hidden; /* Menyembunyikan dropdown */
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        nav ul li:hover > ul {
+            display: block;
+            opacity: 1; /* Mengubah menjadi terlihat saat hover */
+            visibility: visible; /* Membuat dropdown terlihat */
+        }
+
+        nav ul li ul li {
+            padding: 10px;
+        }
+
+        nav ul li ul li a {
+            color: white;
+        }
+
+        nav ul li ul li a:hover {
+            color: #a5d6a7;
+        }
+
         section {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         #camera-video {
@@ -70,7 +102,6 @@
             max-width: 500px;
             border: 2px solid #388e3c;
             border-radius: 8px;
-            margin-bottom: 20px;
         }
 
         #upload-container {
@@ -100,18 +131,13 @@
             font-size: 1rem;
         }
 
-        /* Styling untuk carousel */
-        .carousel-inner img {
-            width: 100%;
-            height: auto;
-        }
-        
+        /* Penelitian Box Styling */
         .penelitian-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
             gap: 20px;
-            padding: 20px;
-            justify-items: center;
+            margin-top: 40px;
         }
 
         .penelitian-item {
@@ -119,7 +145,7 @@
             border: 1px solid #388e3c;
             border-radius: 8px;
             padding: 20px;
-            width: 100%;
+            width: 300px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
@@ -151,13 +177,15 @@
             text-decoration: underline;
         }
 
-        #peta-universitas-jember {
-            margin: 40px 0;
-        }
-
+        /* Responsive design */
         @media (max-width: 600px) {
             #camera-video {
                 max-width: 100%;
+            }
+
+            .penelitian-list {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -171,6 +199,8 @@
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="about.html">Tentang</a></li>
                 <li><a href="contact.html">Kontak</a></li>
+                
+                <!-- Dropdown Menu -->
                 <li>
                     <a href="#">Informasi</a>
                     <ul>
@@ -189,29 +219,10 @@
         <button onclick="window.location.href='about.html'">Pelajari Lebih Lanjut</button>
     </section>
 
-    <!-- Carousel Pertanian -->
-    <section id="carousel-pertanian">
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/800x400?text=Tanaman+Sehat+1" class="d-block w-100" alt="Tanaman Sehat 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/800x400?text=Tanaman+Sehat+2" class="d-block w-100" alt="Tanaman Sehat 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/800x400?text=Tanaman+Sehat+3" class="d-block w-100" alt="Tanaman Sehat 3">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+    <!-- Box Foto (Menambahkan gambar sebelum peta) -->
+    <section id="foto-box">
+        <h1>Gambar Tanaman Sehat</h1>
+        <img src="https://via.placeholder.com/800x400" alt="Tanaman Sehat" style="width: 100%; max-width: 800px; margin: 0 auto; display: block; border-radius: 8px; border: 2px solid #388e3c;">
     </section>
 
     <!-- Kamera dan Unggah Gambar -->
@@ -220,6 +231,7 @@
         <h2>Gunakan Fitur Kami!</h2>
         <video id="camera-video" autoplay></video>
 
+        <!-- Tombol unggah gambar -->
         <div id="upload-container">
             <input type="file" id="file-input" accept="image/*">
         </div>
@@ -254,7 +266,7 @@
         <h1>Peta Lokasi</h1>
         <div id="map" style="height: 400px;"></div>
         <script>
-            var map = L.map('map').setView([-8.170556, 113.705833], 15);
+            var map = L.map('map').setView([-8.170556, 113.705833], 15); // Koordinat Universitas Jember
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -266,24 +278,26 @@
         </script>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Website Casual - All rights reserved</p>
         <p><strong>Dipahami:</strong> Semua informasi yang disediakan di website ini bertujuan untuk memberikan pengetahuan yang bermanfaat bagi pengunjung.</p>
     </footer>
 
-    <!-- Menambahkan Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
+        // Menambahkan akses kamera untuk pemindaian
         const videoElement = document.getElementById("camera-video");
 
+        // Akses kamera
         function startCamera() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true })
                     .then(function(stream) {
                         videoElement.srcObject = stream;
 
+                        // Fungsi untuk menghentikan kamera
                         const track = stream.getTracks()[0];
+                        // Menghentikan stream saat video dihentikan
                         videoElement.onpause = function () {
                             track.stop();
                         };
@@ -297,9 +311,9 @@
             }
         }
 
+        // Mulai kamera saat halaman dimuat
         window.onload = startCamera;
     </script>
-
 </body>
 
 </html>
