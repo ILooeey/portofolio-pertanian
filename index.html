@@ -10,243 +10,37 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Poppins', sans-serif;
-        line-height: 1.5;
-        background-color: #f4f7f6;
-        color: #333;
-    }
-
-    header {
-        background-color: #388e3c;
-        padding: 15px 0;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    nav {
-        display: flex;
-        justify-content: flex-end;
-        padding-right: 15px;
-    }
-
-    nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
-    nav ul li {
-        margin-left: 20px;
-    }
-
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    nav ul li a:hover {
-        color: #a5d6a7;
-        transform: translateY(-3px);
-    }
-
-    #hero {
-        background: url('https://www.example.com/hero-image.jpg') center/cover no-repeat;
-        padding: 60px 20px;
+    /* Style untuk kamera dan unggah gambar */
+    #camera-container {
         text-align: center;
-        color: white;
+        margin-top: 30px;
     }
 
-    #hero h1 {
-        font-size: 2.8rem;
-        margin-bottom: 15px;
-        font-weight: 700;
-    }
-
-    #hero p {
-        font-size: 1.1rem;
-        margin-bottom: 20px;
-    }
-
-    #hero button {
-        background-color: #388e3c;
-        color: white;
-        padding: 10px 25px;
-        border: none;
-        cursor: pointer;
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: background-color 0.3s ease;
-    }
-
-    #hero button:hover {
-        background-color: #2e7d32;
-    }
-
-    section {
-        padding: 60px 30px;
-        text-align: center;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        color: #388e3c;
-    }
-
-    p {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #555;
-        max-width: 700px;
-        margin: 0 auto 20px;
-    }
-
-    .gallery {
-        display: flex;
-        justify-content: space-between;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-
-    .gallery img {
-        max-width: 30%;
-        border-radius: 12px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .gallery img:hover {
-        transform: scale(1.05);
-    }
-
-    footer {
-        background-color: #388e3c;
-        color: white;
-        text-align: center;
-        padding: 20px 0;
-        font-size: 1rem;
-        position: relative;
+    #camera-video {
         width: 100%;
-    }
-
-    #produk-pupuk {
-        padding: 50px 20px;
-        text-align: center;
-    }
-
-    #produk-pupuk h1 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-        color: #388e3c;
-    }
-
-    #produk-pupuk p {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 20px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .produk-container {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        scroll-behavior: smooth;
-        padding-bottom: 15px;
-    }
-
-    .produk-item {
-        min-width: 230px;
-        max-width: 280px;
-        flex-shrink: 0;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    .produk-item img {
-        width: 100%;
+        max-width: 400px;
         height: auto;
-        object-fit: cover;
+        border: 2px solid #388e3c;
+        border-radius: 8px;
     }
 
-    #penelitian-pertanian {
-        padding: 50px 20px;
-        text-align: center;
-        background-color: #e8f5e9;
-    }
-
-    #penelitian-pertanian h1 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-        color: #388e3c;
-    }
-
-    #penelitian-pertanian p {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 20px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .penelitian-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
+    #upload-container {
         margin-top: 20px;
     }
 
-    .penelitian-item {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .penelitian-item:hover {
-        transform: translateY(-5px);
-    }
-
-    .penelitian-item h3 {
-        font-size: 1.4rem;
-        color: #388e3c;
-        margin-bottom: 10px;
-    }
-
-    .penelitian-item p {
-        font-size: 0.95rem;
-        color: #555;
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-
-    .penelitian-item a {
-        text-decoration: none;
-        color: #388e3c;
-        font-weight: 600;
+    #file-input {
+        display: inline-block;
+        padding: 10px;
         font-size: 1rem;
+        background-color: #388e3c;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
     }
 
-    .penelitian-item a:hover {
-        color: #2e7d32;
+    #file-input:hover {
+        background-color: #2e7d32;
     }
 
 </style>
@@ -272,27 +66,15 @@
         <button onclick="window.location.href='about.html'">Pelajari Lebih Lanjut</button>
     </section>
 
-<!-- Section Penelitian Pertanian -->
-<section id="penelitian-pertanian">
-    <h1>Penelitian Pertanian Terbaru</h1>
-    <p>Temukan berbagai penelitian terbaru tentang pertanian yang dapat membantu meningkatkan hasil dan efektivitas pertanian.</p>
+<!-- Kamera dan Unggah Gambar -->
+<section id="camera-container">
+    <h2>Pemindaian Gambar dengan Kamera</h2>
+    <!-- Video kamera -->
+    <video id="camera-video" autoplay></video>
 
-    <div class="penelitian-list">
-        <div class="penelitian-item">
-            <h3>Penelitian Pengaruh Pupuk Organik Terhadap Tanaman Padi</h3>
-            <p>Penelitian ini mengeksplorasi pengaruh pemberian pupuk organik terhadap pertumbuhan dan hasil tanaman padi di berbagai jenis tanah.</p>
-            <a href="penelitian1.html">Baca Selengkapnya</a>
-        </div>
-        <div class="penelitian-item">
-            <h3>Studi Tentang Pemanfaatan Teknologi Irigasi untuk Efisiensi Penggunaan Air</h3>
-            <p>Penelitian ini meneliti penggunaan teknologi irigasi modern untuk meningkatkan efisiensi penggunaan air di pertanian.</p>
-            <a href="penelitian2.html">Baca Selengkapnya</a>
-        </div>
-        <div class="penelitian-item">
-            <h3>Inovasi dalam Pengendalian Hama Tanaman dengan Penggunaan Pestisida Alami</h3>
-            <p>Studi ini mengidentifikasi solusi berbasis alam untuk mengendalikan hama tanaman, menggantikan penggunaan pestisida kimia.</p>
-            <a href="penelitian3.html">Baca Selengkapnya</a>
-        </div>
+    <!-- Tombol unggah gambar -->
+    <div id="upload-container">
+        <input type="file" id="file-input" accept="image/*">
     </div>
 </section>
 
@@ -316,6 +98,43 @@
 <footer>
     <p>&copy; 2024 Website Casual - All rights reserved</p>
 </footer>
+
+<script>
+    // Menambahkan akses kamera untuk pemindaian
+    const videoElement = document.getElementById("camera-video");
+
+    // Akses kamera
+    function startCamera() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    videoElement.srcObject = stream;
+                })
+                .catch(function(error) {
+                    console.log("Tidak dapat mengakses kamera: ", error);
+                });
+        } else {
+            alert("Browser Anda tidak mendukung fitur kamera.");
+        }
+    }
+
+    // Menambahkan listener untuk file input
+    const fileInput = document.getElementById("file-input");
+    fileInput.addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                alert("Gambar berhasil diunggah: " + imageUrl); // Menghasilkan URL gambar
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Mulai kamera saat halaman dimuat
+    window.onload = startCamera;
+</script>
 
 </body>
 </html>
