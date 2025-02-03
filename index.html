@@ -41,7 +41,7 @@
 
         nav ul li {
             margin-left: 20px;
-            position: relative; /* Menambahkan posisi relatif agar dropdown dapat bekerja */
+            position: relative;
         }
 
         nav ul li a {
@@ -57,44 +57,50 @@
             transform: translateY(-3px);
         }
 
-        /* Dropdown Menu */
-        nav ul li ul {
-            display: none;
-            position: absolute;
-            background-color: #388e3c;
-            top: 100%;
-            left: 0;
-            list-style-type: none;
-            padding: 10px;
-            margin-top: 5px;
-            min-width: 180px;
-            border-radius: 8px;
-            opacity: 0; /* Menambahkan transisi */
-            visibility: hidden; /* Menyembunyikan dropdown */
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        nav ul li:hover > ul {
-            display: block;
-            opacity: 1; /* Mengubah menjadi terlihat saat hover */
-            visibility: visible; /* Membuat dropdown terlihat */
-        }
-
-        nav ul li ul li {
-            padding: 10px;
-        }
-
-        nav ul li ul li a {
-            color: white;
-        }
-
-        nav ul li ul li a:hover {
-            color: #a5d6a7;
-        }
-
         section {
             text-align: center;
             padding: 60px 20px;
+        }
+
+        #hero {
+            background: linear-gradient(to right, #388e3c, #66bb6a);
+            color: white;
+            padding: 100px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        #hero button {
+            padding: 15px 30px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #hero button:hover {
+            background-color: #388e3c;
+        }
+
+        #camera-container {
+            background-color: white;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 40px;
         }
 
         #camera-video {
@@ -212,14 +218,14 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section id="hero">
         <div>
             <h1>Selamat datang!</h1>
-            <p>Temukan berbagai informasi dengan cara yang menyenangkan dan mudah.</p>
+            <p>Temukan berbagai informasi dengan cara yang menyenangkan dan mudah, serta manfaatkan fitur-fitur kami yang interaktif.</p>
             <button onclick="window.location.href='about.html'">Pelajari Lebih Lanjut</button>
         </div>
     </section>
-
 
     <!-- Kamera dan Unggah Gambar -->
     <section id="camera-container">
