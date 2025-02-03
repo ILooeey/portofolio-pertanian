@@ -168,55 +168,50 @@
         <p>Temukan berbagai informasi dengan cara yang menyenangkan dan mudah.</p>
         <button onclick="window.location.href='about.html'">Pelajari Lebih Lanjut</button>
     </section>
-<!-- Section Penelitian Pertanian -->
-<section id="penelitian-pertanian">
-    <h1>Penelitian Pertanian Terbaru</h1>
-    <p>Temukan berbagai penelitian terbaru tentang pertanian yang dapat membantu meningkatkan hasil dan efektivitas pertanian.</p>
 
-    <div class="penelitian-list">
-        <div class="penelitian-item">
-            <h3>Penelitian Pengaruh Pupuk Organik Terhadap Tanaman Padi</h3>
-            <p>Penelitian ini mengeksplorasi pengaruh pemberian pupuk organik terhadap pertumbuhan dan hasil tanaman padi di berbagai jenis tanah.</p>
-            <a href="penelitian1.html">Baca Selengkapnya</a>
+    <!-- Section Penelitian Pertanian -->
+    <section id="penelitian-pertanian">
+        <h1>Penelitian Pertanian Terbaru</h1>
+        <p>Temukan berbagai penelitian terbaru tentang pertanian yang dapat membantu meningkatkan hasil dan efektivitas pertanian.</p>
+
+        <div class="penelitian-list">
+            <div class="penelitian-item">
+                <h3>Penelitian Pengaruh Pupuk Organik Terhadap Tanaman Padi</h3>
+                <p>Penelitian ini mengeksplorasi pengaruh pemberian pupuk organik terhadap pertumbuhan dan hasil tanaman padi di berbagai jenis tanah.</p>
+                <a href="penelitian1.html">Baca Selengkapnya</a>
+            </div>
+            <div class="penelitian-item">
+                <h3>Studi Tentang Pemanfaatan Teknologi Irigasi untuk Efisiensi Penggunaan Air</h3>
+                <p>Penelitian ini meneliti penggunaan teknologi irigasi modern untuk meningkatkan efisiensi penggunaan air di pertanian.</p>
+                <a href="penelitian2.html">Baca Selengkapnya</a>
+            </div>
+            <div class="penelitian-item">
+                <h3>Inovasi dalam Pengendalian Hama Tanaman dengan Penggunaan Pestisida Alami</h3>
+                <p>Studi ini mengidentifikasi solusi berbasis alam untuk mengendalikan hama tanaman, menggantikan penggunaan pestisida kimia.</p>
+                <a href="penelitian3.html">Baca Selengkapnya</a>
+            </div>
         </div>
-        <div class="penelitian-item">
-            <h3>Studi Tentang Pemanfaatan Teknologi Irigasi untuk Efisiensi Penggunaan Air</h3>
-            <p>Penelitian ini meneliti penggunaan teknologi irigasi modern untuk meningkatkan efisiensi penggunaan air di pertanian.</p>
-            <a href="penelitian2.html">Baca Selengkapnya</a>
-        </div>
-        <div class="penelitian-item">
-            <h3>Inovasi dalam Pengendalian Hama Tanaman dengan Penggunaan Pestisida Alami</h3>
-            <p>Studi ini mengidentifikasi solusi berbasis alam untuk mengendalikan hama tanaman, menggantikan penggunaan pestisida kimia.</p>
-            <a href="penelitian3.html">Baca Selengkapnya</a>
-        </div>
-    </div>
-    
-    <!-- Menambahkan "Dipahami" di bawah penjelasan penelitian -->
-    <p><strong>Dipahami</strong>: Semua informasi penelitian dapat memberikan wawasan yang berguna untuk kemajuan pertanian. Pastikan untuk memahami setiap detail penelitian yang ada untuk memaksimalkan aplikasinya di lapangan.</p>
-</section>
 
-<!-- Peta Universitas Jember -->
-<section id="peta-universitas-jember">
-    <h1>Peta Lokasi</h1>
-    <div id="map" style="height: 400px;"></div>
-    <script>
-        var map = L.map('map').setView([-8.170556, 113.705833], 15); // Koordinat Universitas Jember
+        <!-- Menambahkan "Dipahami" di bawah penjelasan penelitian -->
+        <p><strong>Dipahami</strong>: Semua informasi penelitian dapat memberikan wawasan yang berguna untuk kemajuan pertanian. Pastikan untuk memahami setiap detail penelitian yang ada untuk memaksimalkan aplikasinya di lapangan.</p>
+    </section>
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+    <!-- Peta Universitas Jember -->
+    <section id="peta-universitas-jember">
+        <h1>Peta Lokasi</h1>
+        <div id="map" style="height: 400px;"></div>
+        <script>
+            var map = L.map('map').setView([-8.170556, 113.705833], 15); // Koordinat Universitas Jember
 
-        L.marker([-8.170556, 113.705833]).addTo(map)
-            .bindPopup('Universitas Jember')
-            .openPopup();
-    </script>
-</section>
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
-<footer>
-    <p>&copy; 2024 Website Casual - All rights reserved</p>
-    <!-- Menambahkan kata "Dipahami" di footer jika ingin menekankan pemahaman -->
-    <p><strong>Dipahami:</strong> Semua informasi yang disediakan di website ini bertujuan untuk memberikan pengetahuan yang bermanfaat bagi pengunjung.</p>
-</footer>
+            L.marker([-8.170556, 113.705833]).addTo(map)
+                .bindPopup('Universitas Jember')
+                .openPopup();
+        </script>
+    </section>
 
     <!-- Kamera dan Unggah Gambar -->
     <section id="camera-container">
@@ -230,8 +225,10 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Website Casual - All rights reserved</p>
+        <p><strong>Dipahami:</strong> Semua informasi yang disediakan di website ini bertujuan untuk memberikan pengetahuan yang bermanfaat bagi pengunjung.</p>
     </footer>
 
     <script>
@@ -264,7 +261,6 @@
         // Mulai kamera saat halaman dimuat
         window.onload = startCamera;
     </script>
-
 </body>
 
 </html>
