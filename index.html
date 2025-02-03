@@ -329,6 +329,28 @@
         <p>&copy; 2024 Website Casual - All rights reserved</p>
     </footer>
 
+    // Menambahkan akses kamera untuk pemindaian
+const videoElement = document.getElementById("camera-video");
+
+// Akses kamera
+function startCamera() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                videoElement.srcObject = stream;
+            })
+            .catch(function(error) {
+                console.log("Tidak dapat mengakses kamera: ", error);
+            });
+    } else {
+        alert("Browser Anda tidak mendukung fitur kamera.");
+    }
+}
+
+// Mulai kamera saat halaman dimuat
+window.onload = startCamera;
+
+
 </body>
 
 </html>
