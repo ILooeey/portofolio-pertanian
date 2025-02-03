@@ -41,7 +41,7 @@
 
         nav ul li {
             margin-left: 20px;
-            position: relative;
+            position: relative; /* Menambahkan posisi relatif agar dropdown dapat bekerja */
         }
 
         nav ul li a {
@@ -69,10 +69,15 @@
             margin-top: 5px;
             min-width: 180px;
             border-radius: 8px;
+            opacity: 0; /* Menambahkan transisi */
+            visibility: hidden; /* Menyembunyikan dropdown */
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         nav ul li:hover > ul {
             display: block;
+            opacity: 1; /* Mengubah menjadi terlihat saat hover */
+            visibility: visible; /* Membuat dropdown terlihat */
         }
 
         nav ul li ul li {
