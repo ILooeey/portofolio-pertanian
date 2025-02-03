@@ -29,15 +29,19 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
+        nav {
             display: flex;
             justify-content: center;
         }
 
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
         nav ul li {
             margin-left: 20px;
+            position: relative;
         }
 
         nav ul li a {
@@ -53,13 +57,39 @@
             transform: translateY(-3px);
         }
 
+        /* Dropdown Menu */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #388e3c;
+            top: 100%;
+            left: 0;
+            list-style-type: none;
+            padding: 10px;
+            margin-top: 5px;
+            min-width: 180px;
+            border-radius: 8px;
+        }
+
+        nav ul li:hover > ul {
+            display: block;
+        }
+
+        nav ul li ul li {
+            padding: 10px;
+        }
+
+        nav ul li ul li a {
+            color: white;
+        }
+
+        nav ul li ul li a:hover {
+            color: #a5d6a7;
+        }
+
         section {
             text-align: center;
             padding: 60px 20px;
-        }
-
-        #camera-container {
-            margin-top: 40px;
         }
 
         #camera-video {
@@ -114,6 +144,15 @@
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="about.html">Tentang</a></li>
                 <li><a href="contact.html">Kontak</a></li>
+                
+                <!-- Dropdown Menu -->
+                <li>
+                    <a href="#">Informasi</a>
+                    <ul>
+                        <li><a href="kesehatan_tanah.html">Kesehatan Tanah</a></li>
+                        <li><a href="kesehatan_tumbuhan.html">Kesehatan Tumbuhan</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -175,4 +214,3 @@
 </body>
 
 </html>
-s
