@@ -135,7 +135,8 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        #capture-button, #file-input {
+        #capture-button,
+        #file-input {
             padding: 12px 24px;
             background-color: #388e3c;
             color: white;
@@ -147,8 +148,18 @@
             margin-top: 20px;
         }
 
-        #capture-button:hover, #file-input:hover {
+        #capture-button:hover,
+        #file-input:hover {
             background-color: #66bb6a;
+        }
+
+        /* Peta */
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* Penelitian Pertanian */
@@ -279,6 +290,11 @@
         <button id="capture-button">Ambil Gambar</button>
     </section>
 
+    <section id="map-container">
+        <h2>Lokasi Tanaman Anda</h2>
+        <div id="map"></div>
+    </section>
+
     <section id="penelitian-pertanian">
         <h1>Penelitian Pertanian Terbaru</h1>
         <p>Temukan berbagai penelitian terbaru yang bisa membantu Anda meningkatkan hasil pertanian dengan cara yang lebih efisien.</p>
@@ -307,6 +323,17 @@
     </footer>
 
     <script>
+        // Peta - Leaflet
+        var map = L.map('map').setView([1.2956, 103.7769], 13);  // Koordinat contoh
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var marker = L.marker([1.2956, 103.7769]).addTo(map);
+        marker.bindPopup('<b>Lokasi Tanaman Anda</b><br>Koordinat').openPopup();
+
+        // Kamera
         const videoElement = document.getElementById("camera-video");
         const captureButton = document.getElementById("capture-button");
         let cameraStream = null;
