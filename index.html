@@ -55,11 +55,6 @@
             border-radius: 8px;
             margin-top: 40px;
         }
-            #camera-video {
-        width: 100%;
-        height: auto;
-        }
-
 
         #map {
             height: 400px;
@@ -104,20 +99,6 @@
 
         .penelitian-item a:hover {
             color: #66bb6a;
-        }
-
-        .health-tips-card {
-            border-radius: 8px;
-            border: 1px solid #388e3c;
-            margin-bottom: 30px;
-        }
-
-        .health-tips-card h5 {
-            color: #388e3c;
-        }
-
-        .health-tips-card p {
-            color: #555;
         }
 
         /* Button with Green Gradient */
@@ -165,6 +146,13 @@
 
         .cta-section button:hover {
             background-color: #388e3c;
+        }
+
+        /* Responsif Kamera */
+        #camera-video {
+            width: 100%;
+            height: auto;
+            border: 2px solid #388e3c; /* Optional */
         }
     </style>
 </head>
@@ -221,42 +209,6 @@
         <button id="capture-button" class="btn btn-success">Ambil Gambar</button>
     </section>
 
-    <!-- Map Section -->
-    <section id="map-container" class="container">
-        <h2 class="text-center mt-5">Lokasi Kami</h2>
-        <div id="map"></div>
-    </section>
-
-    <!-- Penelitian Pertanian -->
-    <section id="penelitian-pertanian" class="container">
-        <h1 class="text-center my-5">Penelitian Pertanian Terbaru</h1>
-        <p class="text-center">Temukan berbagai penelitian terbaru yang bisa membantu Anda meningkatkan hasil pertanian dengan cara yang lebih efisien.</p>
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="penelitian-item">
-                    <h3>Pengaruh Pupuk Organik Terhadap Padi</h3>
-                    <p>Studi tentang penggunaan pupuk organik untuk meningkatkan hasil pertanian tanaman padi.</p>
-                    <a href="penelitian1.html">Baca Selengkapnya</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="penelitian-item">
-                    <h3>Inovasi Teknologi Irigasi</h3>
-                    <p>Penelitian terbaru mengenai teknologi irigasi yang meningkatkan efisiensi penggunaan air di pertanian.</p>
-                    <a href="penelitian2.html">Baca Selengkapnya</a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="penelitian-item">
-                    <h3>Pengendalian Hama dengan Pestisida Alami</h3>
-                    <p>Studi tentang penggunaan pestisida alami untuk mengendalikan hama pada tanaman.</p>
-                    <a href="penelitian3.html">Baca Selengkapnya</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="text-center py-4">
         <p>&copy; 2024 EarthDoctor - All rights reserved</p>
@@ -283,25 +235,24 @@
 
         function startCamera() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia({ video: true })
+                // Pastikan meminta akses untuk video
+                const constraints = {
+                    video: {
+                        facingMode: "environment" // untuk kamera belakang (gunakan 'user' untuk kamera depan)
+                    }
+                };
+
+                navigator.mediaDevices.getUserMedia(constraints)
                     .then(function (stream) {
                         cameraStream = stream;
                         videoElement.srcObject = stream;
                     })
                     .catch(function (error) {
                         console.log("Tidak dapat mengakses kamera: ", error);
-                        alert("Terjadi masalah saat mengakses kamera. Pastikan izin diaktifkan.");
+                        alert("Terjadi masalah saat mengakses kamera.");
                     });
             } else {
                 alert("Browser Anda tidak mendukung fitur kamera.");
-            }
-        }
-
-        function stopCamera() {
-            if (cameraStream) {
-                const tracks = cameraStream.getTracks();
-                tracks.forEach(track => track.stop());
-                videoElement.srcObject = null;
             }
         }
 
@@ -320,12 +271,5 @@
         window.onload = startCamera;
     </script>
 </body>
-        <!-- Landing Page - Penyebab dan Cara Penanganan Tanaman -->
-    <section class="cta-section">
-        <h2>Penyebab Masalah pada Tanaman dan Solusinya</h2>
-        <p>Temukan cara untuk mendiagnosis dan mengatasi masalah yang terjadi pada tanaman Anda.</p>
-        <button onclick="window.location.href='analisis_tanaman.html'">Pelajari Lebih Lanjut</button>
-    </section>
-
 
 </html>
