@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Tanaman - EarthDoctor</title>
+    <!-- Link ke Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .content-section {
+            background-color: white;
+            padding: 50px 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            color: #388e3c;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cause-section,
+        .solution-section {
+            margin-bottom: 40px;
+        }
+
+        .cause-section h3,
+        .solution-section h3 {
+            color: #388e3c;
+            font-size: 2rem;
+        }
+
+        .cause-section ul,
+        .solution-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .cause-section li,
+        .solution-section li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .cause-section li::before {
+            content: "🌱 ";
+            color: #388e3c;
+        }
+
+        .solution-section li::before {
+            content: "💡 ";
+            color: #388e3c;
+        }
+
+        .back-button {
+            margin-top: 30px;
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .back-button:hover {
+            background-color: #66bb6a;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="#">EarthDoctor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Kontak</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="analisis_tanaman.html">Analisis Tanaman</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container content-section">
+        <h2 class="text-center">Analisis Masalah Tanaman Anda</h2>
+
+        <!-- Penyebab Masalah Tanaman -->
+        <div class="cause-section">
+            <h3>Penyebab Umum Masalah pada Tanaman</h3>
+            <ul>
+                <li>Kurangnya Nutrisi: Tanaman yang tidak mendapat cukup pupuk atau air akan berkembang dengan buruk.</li>
+                <li>Hama: Hama seperti kutu dan ulat dapat merusak tanaman dengan memakan daun atau akar.</li>
+                <li>Penyakit: Tanaman dapat terkena jamur atau virus yang menyebabkan daun menguning atau layu.</li>
+                <li>Lingkungan yang Tidak Mendukung: Suhu atau kelembapan yang tidak sesuai dapat merusak tanaman.</li>
+                <li>Pengairan Berlebih atau Kurang: Tanaman yang terendam air atau terlalu kering dapat mati.</li>
+            </ul>
+        </div>
+
+        <!-- Solusi Penanganan Masalah -->
+        <div class="solution-section">
+            <h3>Cara Penanganan dan Perawatan Tanaman</h3>
+            <ul>
+                <li>Berikan Pupuk Organik: Gunakan pupuk yang kaya akan unsur hara penting untuk pertumbuhan tanaman.</li>
+                <li>Pengendalian Hama Secara Alami: Gunakan pestisida alami untuk menghindari penggunaan bahan kimia yang berbahaya.</li>
+                <li>Gunakan Teknik Penyiraman yang Tepat: Sesuaikan jumlah air yang diberikan sesuai dengan jenis tanaman.</li>
+                <li>Perhatikan Suhu dan Kelembapan: Pastikan tanaman tumbuh di lingkungan yang sesuai dengan kebutuhan spesiesnya.</li>
+                <li>Potong Daun yang Terserang Penyakit: Hapus bagian tanaman yang terinfeksi untuk menghindari penyebaran penyakit.</li>
+            </ul>
+        </div>
+
+        <!-- Button Back -->
+        <div class="text-center">
+            <button class="back-button" onclick="window.location.href='index.html'">Kembali ke Beranda</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
