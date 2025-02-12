@@ -63,97 +63,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .penelitian-item {
-            background-color: #ffffff;
-            border: 1px solid #388e3c;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .penelitian-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .penelitian-item h3 {
-            color: #388e3c;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .penelitian-item p {
-            color: #555;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .penelitian-item a {
-            display: inline-block;
-            color: #388e3c;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .penelitian-item a:hover {
-            color: #66bb6a;
-        }
-
-        /* Button with Green Gradient */
-        .btn-green {
-            background: linear-gradient(to right, #66bb6a, #388e3c);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .btn-green:hover {
-            background: linear-gradient(to right, #388e3c, #66bb6a);
-            color: white;
-        }
-
-        /* Banner/Call to Action Section */
-        .cta-section {
-            background-color: #388e3c;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 50px;
-            border-radius: 8px;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .cta-section button {
-            padding: 15px 30px;
-            background-color: #66bb6a;
-            color: white;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .cta-section button:hover {
-            background-color: #388e3c;
-        }
-
-        /* Responsif Kamera */
-        #camera-video {
-            width: 100%;
-            height: auto;
-            border: 2px solid #388e3c; /* Optional */
-        }
     </style>
 </head>
 
@@ -207,6 +116,15 @@
         </div>
         <input type="file" id="file-input" accept="image/*" class="form-control my-3">
         <button id="capture-button" class="btn btn-success">Ambil Gambar</button>
+        <div class="text-center my-3">
+            <button id="toggle-camera" class="btn btn-primary">Ganti Kamera</button>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map-container" class="container">
+        <h2 class="text-center mt-5">Lokasi Kami</h2>
+        <div id="map"></div>
     </section>
 
     <!-- Footer -->
@@ -231,17 +149,17 @@
         // Kamera
         const videoElement = document.getElementById("camera-video");
         const captureButton = document.getElementById("capture-button");
+        const toggleCameraButton = document.getElementById("toggle-camera");
         let cameraStream = null;
+        let currentCamera = 'user'; // Default to front camera
 
-        function startCamera() {
+        function startCamera(cameraType) {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                // Pastikan meminta akses untuk video
                 const constraints = {
                     video: {
-                        facingMode: "environment" // untuk kamera belakang (gunakan 'user' untuk kamera depan)
+                        facingMode: cameraType // "user" for front camera, "environment" for back camera
                     }
                 };
-
                 navigator.mediaDevices.getUserMedia(constraints)
                     .then(function (stream) {
                         cameraStream = stream;
@@ -249,11 +167,25 @@
                     })
                     .catch(function (error) {
                         console.log("Tidak dapat mengakses kamera: ", error);
-                        alert("Terjadi masalah saat mengakses kamera.");
+                        alert("Terjadi masalah saat mengakses kamera. Pastikan izin diaktifkan.");
                     });
             } else {
                 alert("Browser Anda tidak mendukung fitur kamera.");
             }
+        }
+
+        function stopCamera() {
+            if (cameraStream) {
+                const tracks = cameraStream.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+            }
+        }
+
+        function toggleCamera() {
+            stopCamera();
+            currentCamera = (currentCamera === 'user') ? 'environment' : 'user';
+            startCamera(currentCamera);
         }
 
         captureButton.addEventListener("click", function () {
@@ -268,8 +200,9 @@
             console.log("Gambar ditangkap:", imgData);
         });
 
-        window.onload = startCamera;
+        toggleCameraButton.addEventListener("click", toggleCamera);
+
+        window.onload = () => startCamera(currentCamera);
     </script>
 </body>
-
 </html>
