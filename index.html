@@ -8,19 +8,34 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
     <style>
-        /* Styling Navbar */
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Navbar */
         nav {
             background-color: white;
-            padding: 10px 20px;
+            padding: 15px 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         nav ul {
-            list-style-type: none;
             display: flex;
             justify-content: space-around;
+            list-style-type: none;
             padding: 0;
             margin: 0;
         }
@@ -68,34 +83,23 @@
             visibility: visible;
         }
 
-        nav ul li ul li {
-            padding: 10px;
-        }
-
-        nav ul li ul li a {
-            color: #333;
-        }
-
-        nav ul li ul li a:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Styling untuk Hero Section */
+        /* Hero Section */
         #hero {
             background: linear-gradient(to right, #388e3c, #66bb6a);
             color: white;
-            padding: 100px 20px;
+            padding: 120px 20px;
+            text-align: center;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         #hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
         }
 
         #hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
         }
 
@@ -114,47 +118,24 @@
             background-color: #388e3c;
         }
 
-        /* Styling untuk Fitur Kamera */
+        /* Kamera dan Fitur Unggulan */
         #camera-container {
             background-color: white;
             padding: 40px 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             margin-top: 40px;
-        }
-
-        #camera-area {
-            cursor: pointer;
+            text-align: center;
         }
 
         #camera-video {
             width: 100%;
             max-width: 500px;
-            border: 2px solid #388e3c;
             border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        #upload-container {
-            margin-top: 20px;
-        }
-
-        #file-input {
-            padding: 10px;
-            background-color: #388e3c;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        #file-input:hover {
-            background-color: #2e7d32;
-        }
-
-        #capture-button {
-            margin-top: 20px;
+        #capture-button, #file-input {
             padding: 12px 24px;
             background-color: #388e3c;
             color: white;
@@ -163,13 +144,14 @@
             font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-top: 20px;
         }
 
-        #capture-button:hover {
+        #capture-button:hover, #file-input:hover {
             background-color: #66bb6a;
         }
 
-        /* Styling untuk Penelitian Pertanian */
+        /* Penelitian Pertanian */
         .penelitian-list {
             display: flex;
             justify-content: space-around;
@@ -183,7 +165,7 @@
             border: 1px solid #388e3c;
             border-radius: 8px;
             padding: 20px;
-            width: 300px;
+            width: 280px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
@@ -194,36 +176,68 @@
 
         .penelitian-item h3 {
             color: #388e3c;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
         }
 
         .penelitian-item p {
             color: #555;
             font-size: 0.9rem;
-            margin-top: 10px;
+            margin-bottom: 15px;
         }
 
         .penelitian-item a {
             display: inline-block;
-            margin-top: 10px;
             color: #388e3c;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
 
         .penelitian-item a:hover {
-            text-decoration: underline;
+            color: #66bb6a;
         }
 
         /* Responsif */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+
+            .penelitian-list {
+                justify-content: center;
+            }
+
+            .penelitian-item {
+                width: 100%;
+                max-width: 350px;
+                margin-bottom: 20px;
+            }
+
+            #camera-container {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #hero h1 {
+                font-size: 2rem;
+            }
+
+            #hero p {
+                font-size: 0.9rem;
+            }
+
             #camera-video {
                 max-width: 100%;
             }
 
-            .penelitian-list {
-                flex-direction: column;
-                align-items: center;
+            .penelitian-item {
+                width: 100%;
             }
         }
     </style>
@@ -249,74 +263,51 @@
     <section id="hero">
         <div>
             <h1>Selamat datang!</h1>
-            <p>Temukan berbagai informasi dengan cara yang menyenangkan dan mudah, serta manfaatkan fitur-fitur kami yang interaktif.</p>
+            <p>Temukan berbagai informasi tentang pertanian dan manfaatkan fitur interaktif untuk meningkatkan hasil pertanian Anda.</p>
             <button onclick="window.location.href='about.html'">Pelajari Lebih Lanjut</button>
         </div>
     </section>
 
     <section id="camera-container">
-        <h1>Ingin mengetahui apakah tanaman Anda sehat?</h1>
-        <h2>Gunakan Fitur Kami!</h2>
+        <h2>Gunakan Fitur Kamera untuk Memeriksa Tanaman Anda</h2>
 
         <div id="camera-area">
             <video id="camera-video" autoplay></video>
         </div>
 
-        <div id="upload-container">
-            <input type="file" id="file-input" accept="image/*">
-        </div>
-
-        <!-- Button Ambil Gambar -->
+        <input type="file" id="file-input" accept="image/*">
         <button id="capture-button">Ambil Gambar</button>
     </section>
 
     <section id="penelitian-pertanian">
         <h1>Penelitian Pertanian Terbaru</h1>
-        <p>Temukan berbagai penelitian terbaru tentang pertanian yang dapat membantu meningkatkan hasil dan efektivitas pertanian.</p>
+        <p>Temukan berbagai penelitian terbaru yang bisa membantu Anda meningkatkan hasil pertanian dengan cara yang lebih efisien.</p>
 
         <div class="penelitian-list">
             <div class="penelitian-item">
-                <h3>Penelitian Pengaruh Pupuk Organik Terhadap Tanaman Padi</h3>
-                <p>Penelitian ini mengeksplorasi pengaruh pemberian pupuk organik terhadap pertumbuhan dan hasil tanaman padi di berbagai jenis tanah.</p>
+                <h3>Pengaruh Pupuk Organik Terhadap Padi</h3>
+                <p>Studi tentang penggunaan pupuk organik untuk meningkatkan hasil pertanian tanaman padi.</p>
                 <a href="penelitian1.html">Baca Selengkapnya</a>
             </div>
             <div class="penelitian-item">
-                <h3>Studi Tentang Pemanfaatan Teknologi Irigasi untuk Efisiensi Penggunaan Air</h3>
-                <p>Penelitian ini meneliti penggunaan teknologi irigasi modern untuk meningkatkan efisiensi penggunaan air di pertanian.</p>
+                <h3>Inovasi Teknologi Irigasi</h3>
+                <p>Penelitian terbaru mengenai teknologi irigasi yang meningkatkan efisiensi penggunaan air di pertanian.</p>
                 <a href="penelitian2.html">Baca Selengkapnya</a>
             </div>
             <div class="penelitian-item">
-                <h3>Inovasi dalam Pengendalian Hama Tanaman dengan Penggunaan Pestisida Alami</h3>
-                <p>Studi ini mengidentifikasi solusi berbasis alam untuk mengendalikan hama tanaman, menggantikan penggunaan pestisida kimia.</p>
+                <h3>Pengendalian Hama dengan Pestisida Alami</h3>
+                <p>Studi tentang penggunaan pestisida alami untuk mengendalikan hama pada tanaman.</p>
                 <a href="penelitian3.html">Baca Selengkapnya</a>
             </div>
         </div>
     </section>
 
-    <section id="peta-universitas-jember">
-        <h1>Peta Lokasi</h1>
-        <div id="map" style="height: 400px;"></div>
-        <script>
-            var map = L.map('map').setView([-8.170556, 113.705833], 15);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            L.marker([-8.170556, 113.705833]).addTo(map)
-                .bindPopup('Universitas Jember')
-                .openPopup();
-        </script>
-    </section>
-
     <footer>
-        <p>&copy; 2024 Website Casual - All rights reserved</p>
-        <p><strong>Dipahami:</strong> Semua informasi yang disediakan di website ini bertujuan untuk memberikan pengetahuan yang bermanfaat bagi pengunjung.</p>
+        <p>&copy; 2024 EarthDoctor - All rights reserved</p>
     </footer>
 
     <script>
         const videoElement = document.getElementById("camera-video");
-        const cameraArea = document.getElementById("camera-area");
         const captureButton = document.getElementById("capture-button");
         let cameraStream = null;
 
@@ -353,8 +344,6 @@
 
             // Mendapatkan gambar dari kamera
             const imgData = canvas.toDataURL("image/png");
-
-            // Anda bisa mengunggah atau memproses gambar lebih lanjut
             console.log("Gambar ditangkap:", imgData);
         });
 
