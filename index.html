@@ -166,4 +166,200 @@
         }
 
         #capture-button:hover {
-            background-color: #66bb6a
+            background-color: #66bb6a;
+        }
+
+        /* Styling untuk Penelitian Pertanian */
+        .penelitian-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .penelitian-item {
+            background-color: #ffffff;
+            border: 1px solid #388e3c;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .penelitian-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .penelitian-item h3 {
+            color: #388e3c;
+            font-size: 1.2rem;
+        }
+
+        .penelitian-item p {
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .penelitian-item a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #388e3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .penelitian-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsif */
+        @media (max-width: 600px) {
+            #camera-video {
+                max-width: 100%;
+            }
+
+            .penelitian-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="contact.html">Kontak</a></li>
+                <li><a href="#">Informasi</a>
+                    <ul>
+                        <li><a href="kesehatan_tanah.html">Kesehatan Tanah</a></li>
+                        <li><a href="kesehatan_tumbuhan.html">Kesehatan Tumbuhan</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div>
+            <h1>Selamat datang!</h1>
+            <p>Temukan berbagai informasi dengan cara yang menyenangkan dan mudah, serta manfaatkan fitur-fitur kami yang interaktif.</p>
+            <button onclick="window.location.href='about.html'">Pelajari Lebih Lanjut</button>
+        </div>
+    </section>
+
+    <section id="camera-container">
+        <h1>Ingin mengetahui apakah tanaman Anda sehat?</h1>
+        <h2>Gunakan Fitur Kami!</h2>
+
+        <div id="camera-area">
+            <video id="camera-video" autoplay></video>
+        </div>
+
+        <div id="upload-container">
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+
+        <!-- Button Ambil Gambar -->
+        <button id="capture-button">Ambil Gambar</button>
+    </section>
+
+    <section id="penelitian-pertanian">
+        <h1>Penelitian Pertanian Terbaru</h1>
+        <p>Temukan berbagai penelitian terbaru tentang pertanian yang dapat membantu meningkatkan hasil dan efektivitas pertanian.</p>
+
+        <div class="penelitian-list">
+            <div class="penelitian-item">
+                <h3>Penelitian Pengaruh Pupuk Organik Terhadap Tanaman Padi</h3>
+                <p>Penelitian ini mengeksplorasi pengaruh pemberian pupuk organik terhadap pertumbuhan dan hasil tanaman padi di berbagai jenis tanah.</p>
+                <a href="penelitian1.html">Baca Selengkapnya</a>
+            </div>
+            <div class="penelitian-item">
+                <h3>Studi Tentang Pemanfaatan Teknologi Irigasi untuk Efisiensi Penggunaan Air</h3>
+                <p>Penelitian ini meneliti penggunaan teknologi irigasi modern untuk meningkatkan efisiensi penggunaan air di pertanian.</p>
+                <a href="penelitian2.html">Baca Selengkapnya</a>
+            </div>
+            <div class="penelitian-item">
+                <h3>Inovasi dalam Pengendalian Hama Tanaman dengan Penggunaan Pestisida Alami</h3>
+                <p>Studi ini mengidentifikasi solusi berbasis alam untuk mengendalikan hama tanaman, menggantikan penggunaan pestisida kimia.</p>
+                <a href="penelitian3.html">Baca Selengkapnya</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="peta-universitas-jember">
+        <h1>Peta Lokasi</h1>
+        <div id="map" style="height: 400px;"></div>
+        <script>
+            var map = L.map('map').setView([-8.170556, 113.705833], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([-8.170556, 113.705833]).addTo(map)
+                .bindPopup('Universitas Jember')
+                .openPopup();
+        </script>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Website Casual - All rights reserved</p>
+        <p><strong>Dipahami:</strong> Semua informasi yang disediakan di website ini bertujuan untuk memberikan pengetahuan yang bermanfaat bagi pengunjung.</p>
+    </footer>
+
+    <script>
+        const videoElement = document.getElementById("camera-video");
+        const cameraArea = document.getElementById("camera-area");
+        const captureButton = document.getElementById("capture-button");
+        let cameraStream = null;
+
+        function startCamera() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        cameraStream = stream;
+                        videoElement.srcObject = stream;
+                    })
+                    .catch(function (error) {
+                        console.log("Tidak dapat mengakses kamera: ", error);
+                        alert("Terjadi masalah saat mengakses kamera. Pastikan izin diaktifkan.");
+                    });
+            } else {
+                alert("Browser Anda tidak mendukung fitur kamera.");
+            }
+        }
+
+        function stopCamera() {
+            if (cameraStream) {
+                const tracks = cameraStream.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+            }
+        }
+
+        captureButton.addEventListener("click", function () {
+            const canvas = document.createElement("canvas");
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            const context = canvas.getContext("2d");
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+            // Mendapatkan gambar dari kamera
+            const imgData = canvas.toDataURL("image/png");
+
+            // Anda bisa mengunggah atau memproses gambar lebih lanjut
+            console.log("Gambar ditangkap:", imgData);
+        });
+
+        window.onload = startCamera;
+    </script>
+</body>
+
+</html>
