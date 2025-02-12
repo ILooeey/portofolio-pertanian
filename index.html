@@ -10,64 +10,64 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <style>
-       nav ul {
-    list-style-type: none;
-    display: flex;
-    padding: 0;
-}
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            padding: 0;
+        }
 
-nav ul li {
-    margin-left: 20px;
-    position: relative; /* Menambahkan posisi relatif untuk dropdown */
-}
+        nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
 
-nav ul li a:hover {
-    color: #a5d6a7;
-    transform: translateY(-3px);
-}
+        nav ul li a:hover {
+            color: #a5d6a7;
+            transform: translateY(-3px);
+        }
 
-/* Dropdown Menu */
-nav ul li ul {
-    display: none; /* Menyembunyikan dropdown menu secara default */
-    position: absolute;
-    background-color: #388e3c;
-    top: 100%;
-    left: 0;
-    list-style-type: none;
-    padding: 10px;
-    margin-top: 5px;
-    min-width: 180px;
-    border-radius: 8px;
-    opacity: 0; /* Transisi membuat dropdown lebih halus */
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+        /* Dropdown Menu */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #388e3c;
+            top: 100%;
+            left: 0;
+            list-style-type: none;
+            padding: 10px;
+            margin-top: 5px;
+            min-width: 180px;
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
 
-nav ul li:hover > ul {
-    display: block; /* Menampilkan dropdown saat hover */
-    opacity: 1; /* Menjadikan dropdown terlihat */
-    visibility: visible;
-}
+        nav ul li:hover > ul {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
 
-nav ul li ul li {
-    padding: 10px;
-}
+        nav ul li ul li {
+            padding: 10px;
+        }
 
-nav ul li ul li a {
-    color: white;
-}
+        nav ul li ul li a {
+            color: white;
+        }
 
-nav ul li ul li a:hover {
-    color: #a5d6a7;
-}
+        nav ul li ul li a:hover {
+            color: #a5d6a7;
+        }
 
         section {
             text-align: center;
@@ -115,6 +115,10 @@ nav ul li ul li a:hover {
             margin-top: 40px;
         }
 
+        #camera-area {
+            cursor: pointer;
+        }
+
         #camera-video {
             width: 100%;
             max-width: 500px;
@@ -149,7 +153,6 @@ nav ul li ul li a:hover {
             font-size: 1rem;
         }
 
-        /* Penelitian Box Styling */
         .penelitian-list {
             display: flex;
             justify-content: space-around;
@@ -195,7 +198,6 @@ nav ul li ul li a:hover {
             text-decoration: underline;
         }
 
-        /* Responsive design */
         @media (max-width: 600px) {
             #camera-video {
                 max-width: 100%;
@@ -210,7 +212,6 @@ nav ul li ul li a:hover {
 </head>
 
 <body>
-    <!-- Header dan Navbar -->
     <header>
         <nav>
             <ul>
@@ -227,7 +228,6 @@ nav ul li ul li a:hover {
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero">
         <div>
             <h1>Selamat datang!</h1>
@@ -236,19 +236,20 @@ nav ul li ul li a:hover {
         </div>
     </section>
 
-    <!-- Kamera dan Unggah Gambar -->
     <section id="camera-container">
         <h1>Ingin mengetahui apakah tanaman Anda sehat?</h1>
         <h2>Gunakan Fitur Kami!</h2>
-        <video id="camera-video" autoplay></video>
+        
+        <!-- Div untuk area kamera yang dapat diklik -->
+        <div id="camera-area">
+            <video id="camera-video" autoplay></video>
+        </div>
 
-        <!-- Tombol unggah gambar -->
         <div id="upload-container">
             <input type="file" id="file-input" accept="image/*">
         </div>
     </section>
 
-    <!-- Section Penelitian Pertanian -->
     <section id="penelitian-pertanian">
         <h1>Penelitian Pertanian Terbaru</h1>
         <p>Temukan berbagai penelitian terbaru tentang pertanian yang dapat membantu meningkatkan hasil dan efektivitas pertanian.</p>
@@ -272,12 +273,11 @@ nav ul li ul li a:hover {
         </div>
     </section>
 
-    <!-- Peta Universitas Jember -->
     <section id="peta-universitas-jember">
         <h1>Peta Lokasi</h1>
         <div id="map" style="height: 400px;"></div>
         <script>
-            var map = L.map('map').setView([-8.170556, 113.705833], 15); // Koordinat Universitas Jember
+            var map = L.map('map').setView([-8.170556, 113.705833], 15);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -289,29 +289,22 @@ nav ul li ul li a:hover {
         </script>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Website Casual - All rights reserved</p>
         <p><strong>Dipahami:</strong> Semua informasi yang disediakan di website ini bertujuan untuk memberikan pengetahuan yang bermanfaat bagi pengunjung.</p>
     </footer>
 
     <script>
-        // Menambahkan akses kamera untuk pemindaian
         const videoElement = document.getElementById("camera-video");
+        const cameraArea = document.getElementById("camera-area");
+        let cameraStream = null;
 
-        // Akses kamera
         function startCamera() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true })
                     .then(function(stream) {
+                        cameraStream = stream;
                         videoElement.srcObject = stream;
-
-                        // Fungsi untuk menghentikan kamera
-                        const track = stream.getTracks()[0];
-                        // Menghentikan stream saat video dihentikan
-                        videoElement.onpause = function () {
-                            track.stop();
-                        };
                     })
                     .catch(function(error) {
                         console.log("Tidak dapat mengakses kamera: ", error);
@@ -322,7 +315,22 @@ nav ul li ul li a:hover {
             }
         }
 
-        // Mulai kamera saat halaman dimuat
+        function stopCamera() {
+            if (cameraStream) {
+                const tracks = cameraStream.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+            }
+        }
+
+        cameraArea.addEventListener("click", function() {
+            if (videoElement.srcObject) {
+                stopCamera();
+            } else {
+                startCamera();
+            }
+        });
+
         window.onload = startCamera;
     </script>
 </body>
