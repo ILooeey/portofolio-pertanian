@@ -99,20 +99,6 @@
         .penelitian-item a:hover {
             color: #66bb6a;
         }
-
-        .health-tips-card {
-            border-radius: 8px;
-            border: 1px solid #388e3c;
-            margin-bottom: 30px;
-        }
-
-        .health-tips-card h5 {
-            color: #388e3c;
-        }
-
-        .health-tips-card p {
-            color: #555;
-        }
     </style>
 </head>
 
@@ -158,45 +144,47 @@
         </div>
     </section>
 
-    <!-- Kesehatan Tanaman Section -->
-    <section id="kesehatan-tanaman" class="container my-5">
-        <h1 class="text-center mb-4">Tips Kesehatan Tanaman</h1>
-        <p class="text-center mb-5">Dapatkan informasi tentang cara menjaga kesehatan tanaman Anda, mulai dari identifikasi penyakit hingga pengobatannya.</p>
+    <!-- Kamera Section -->
+    <section id="camera-container" class="container">
+        <h2 class="text-center">Gunakan Fitur Kamera untuk Memeriksa Tanaman Anda</h2>
+        <div class="text-center">
+            <video id="camera-video" autoplay></video>
+        </div>
+        <input type="file" id="file-input" accept="image/*" class="form-control my-3">
+        <button id="capture-button" class="btn btn-success">Ambil Gambar</button>
+    </section>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-            <!-- Card 1 -->
-            <div class="col mb-4">
-                <div class="card health-tips-card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Tanaman Sakit">
-                    <div class="card-body">
-                        <h5 class="card-title">Deteksi Penyakit Pada Tanaman</h5>
-                        <p class="card-text">Mendeteksi tanda-tanda penyakit pada tanaman seperti bercak daun, daun menguning, dan pertumbuhan terhambat.</p>
-                        <a href="deteksi_penyakit.html" class="btn btn-success">Pelajari Lebih Lanjut</a>
-                    </div>
+    <!-- Map Section -->
+    <section id="map-container" class="container">
+        <h2 class="text-center mt-5">Lokasi Tanaman Anda</h2>
+        <div id="map"></div>
+    </section>
+
+    <!-- Penelitian Pertanian -->
+    <section id="penelitian-pertanian" class="container">
+        <h1 class="text-center my-5">Penelitian Pertanian Terbaru</h1>
+        <p class="text-center">Temukan berbagai penelitian terbaru yang bisa membantu Anda meningkatkan hasil pertanian dengan cara yang lebih efisien.</p>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="penelitian-item">
+                    <h3>Pengaruh Pupuk Organik Terhadap Padi</h3>
+                    <p>Studi tentang penggunaan pupuk organik untuk meningkatkan hasil pertanian tanaman padi.</p>
+                    <a href="penelitian1.html">Baca Selengkapnya</a>
                 </div>
             </div>
-
-            <!-- Card 2 -->
-            <div class="col mb-4">
-                <div class="card health-tips-card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Penyiraman Tanaman">
-                    <div class="card-body">
-                        <h5 class="card-title">Pentingnya Penyiraman yang Tepat</h5>
-                        <p class="card-text">Pastikan tanaman Anda mendapatkan cukup air namun tidak berlebihan. Pelajari teknik penyiraman yang efektif.</p>
-                        <a href="penyiraman_tanaman.html" class="btn btn-success">Pelajari Lebih Lanjut</a>
-                    </div>
+            <div class="col">
+                <div class="penelitian-item">
+                    <h3>Inovasi Teknologi Irigasi</h3>
+                    <p>Penelitian terbaru mengenai teknologi irigasi yang meningkatkan efisiensi penggunaan air di pertanian.</p>
+                    <a href="penelitian2.html">Baca Selengkapnya</a>
                 </div>
             </div>
-
-            <!-- Card 3 -->
-            <div class="col mb-4">
-                <div class="card health-tips-card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Pemupukan Tanaman">
-                    <div class="card-body">
-                        <h5 class="card-title">Pemupukan yang Tepat</h5>
-                        <p class="card-text">Pupuk yang tepat dapat mendukung pertumbuhan tanaman dengan baik. Pelajari cara memilih pupuk yang sesuai.</p>
-                        <a href="pemupukan_tanaman.html" class="btn btn-success">Pelajari Lebih Lanjut</a>
-                    </div>
+            <div class="col">
+                <div class="penelitian-item">
+                    <h3>Pengendalian Hama dengan Pestisida Alami</h3>
+                    <p>Studi tentang penggunaan pestisida alami untuk mengendalikan hama pada tanaman.</p>
+                    <a href="penelitian3.html">Baca Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -209,6 +197,61 @@
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Peta - Leaflet
+        var map = L.map('map').setView([1.2956, 103.7769], 13);  // Koordinat contoh
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var marker = L.marker([1.2956, 103.7769]).addTo(map);
+        marker.bindPopup('<b>Lokasi Tanaman Anda</b><br>Koordinat').openPopup();
+
+        // Kamera
+        const videoElement = document.getElementById("camera-video");
+        const captureButton = document.getElementById("capture-button");
+        let cameraStream = null;
+
+        function startCamera() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        cameraStream = stream;
+                        videoElement.srcObject = stream;
+                    })
+                    .catch(function (error) {
+                        console.log("Tidak dapat mengakses kamera: ", error);
+                        alert("Terjadi masalah saat mengakses kamera. Pastikan izin diaktifkan.");
+                    });
+            } else {
+                alert("Browser Anda tidak mendukung fitur kamera.");
+            }
+        }
+
+        function stopCamera() {
+            if (cameraStream) {
+                const tracks = cameraStream.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+            }
+        }
+
+        captureButton.addEventListener("click", function () {
+            const canvas = document.createElement("canvas");
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            const context = canvas.getContext("2d");
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+            // Mendapatkan gambar dari kamera
+            const imgData = canvas.toDataURL("image/png");
+            console.log("Gambar ditangkap:", imgData);
+        });
+
+        window.onload = startCamera;
+    </script>
 </body>
 
 </html>
