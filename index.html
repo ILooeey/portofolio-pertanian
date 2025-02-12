@@ -10,14 +10,21 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <style>
+        /* Styling Navbar */
+        nav {
+            background-color: #388e3c;
+            padding: 10px 20px;
+        }
+
         nav ul {
             list-style-type: none;
             display: flex;
+            justify-content: space-between;
+            margin: 0;
             padding: 0;
         }
 
         nav ul li {
-            margin-left: 20px;
             position: relative;
         }
 
@@ -25,12 +32,14 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: #a5d6a7;
+            background-color: #66bb6a;
+            border-radius: 5px;
             transform: translateY(-3px);
         }
 
@@ -66,14 +75,10 @@
         }
 
         nav ul li ul li a:hover {
-            color: #a5d6a7;
+            background-color: #66bb6a;
         }
 
-        section {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
+        /* Styling untuk Hero Section */
         #hero {
             background: linear-gradient(to right, #388e3c, #66bb6a);
             color: white;
@@ -107,6 +112,7 @@
             background-color: #388e3c;
         }
 
+        /* Styling untuk Fitur Kamera */
         #camera-container {
             background-color: white;
             padding: 40px 20px;
@@ -145,14 +151,23 @@
             background-color: #2e7d32;
         }
 
-        footer {
+        #capture-button {
+            margin-top: 20px;
+            padding: 12px 24px;
             background-color: #388e3c;
             color: white;
-            text-align: center;
-            padding: 20px 0;
+            border: none;
+            border-radius: 8px;
             font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
+        #capture-button:hover {
+            background-color: #66bb6a;
+        }
+
+        /* Styling untuk Penelitian Pertanian */
         .penelitian-list {
             display: flex;
             justify-content: space-around;
@@ -198,6 +213,7 @@
             text-decoration: underline;
         }
 
+        /* Responsif */
         @media (max-width: 600px) {
             #camera-video {
                 max-width: 100%;
@@ -240,7 +256,6 @@
         <h1>Ingin mengetahui apakah tanaman Anda sehat?</h1>
         <h2>Gunakan Fitur Kami!</h2>
         
-        <!-- Div untuk area kamera yang dapat diklik -->
         <div id="camera-area">
             <video id="camera-video" autoplay></video>
         </div>
@@ -248,6 +263,9 @@
         <div id="upload-container">
             <input type="file" id="file-input" accept="image/*">
         </div>
+
+        <!-- Button Ambil Gambar -->
+        <button id="capture-button">Ambil Gambar</button>
     </section>
 
     <section id="penelitian-pertanian">
@@ -297,16 +315,17 @@
     <script>
         const videoElement = document.getElementById("camera-video");
         const cameraArea = document.getElementById("camera-area");
+        const captureButton = document.getElementById("capture-button");
         let cameraStream = null;
 
         function startCamera() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true })
-                    .then(function(stream) {
+                    .then(function (stream) {
                         cameraStream = stream;
                         videoElement.srcObject = stream;
                     })
-                    .catch(function(error) {
+                    .catch(function (error) {
                         console.log("Tidak dapat mengakses kamera: ", error);
                         alert("Terjadi masalah saat mengakses kamera. Pastikan izin diaktifkan.");
                     });
@@ -323,12 +342,18 @@
             }
         }
 
-        cameraArea.addEventListener("click", function() {
-            if (videoElement.srcObject) {
-                stopCamera();
-            } else {
-                startCamera();
-            }
+        captureButton.addEventListener("click", function () {
+            const canvas = document.createElement("canvas");
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            const context = canvas.getContext("2d");
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+            // Mendapatkan gambar dari kamera
+            const imgData = canvas.toDataURL("image/png");
+
+            // Anda bisa mengunggah atau memproses gambar lebih lanjut
+            console.log("Gambar ditangkap:", imgData);
         });
 
         window.onload = startCamera;
