@@ -10,144 +10,213 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
+
         /* Custom CSS */
-        body {
-            background-color: #f4f4f9;
-            font-family: 'Arial', sans-serif;
-        }
+body {
+    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+}
 
-        nav {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+nav {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        #hero {
-            background: linear-gradient(to right, #388e3c, #66bb6a);
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
+#hero {
+    background: linear-gradient(to right, #388e3c, #66bb6a);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
 
-        #hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
+#hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
 
-        #hero button {
-            padding: 15px 30px;
-            background-color: #2e7d32;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
+#hero button {
+    padding: 15px 30px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
 
-        #hero button:hover {
-            background-color: #388e3c;
-        }
+#hero button:hover {
+    background-color: #388e3c;
+}
 
-        #camera-container {
-            padding: 40px 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-top: 40px;
-        }
+#camera-container {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 40px;
+}
 
-        #map {
-            height: 400px;
-            width: 100%;
-            margin-top: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+#map {
+    height: 400px;
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        /* Penelitian Item Styling */
-        .penelitian-item {
-            background-color: #ffffff;
-            border: 1px solid #388e3c;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+/* Penelitian Item Styling */
+.penelitian-item {
+    background-color: #ffffff;
+    border: 1px solid #388e3c;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
 
-        .penelitian-item:hover {
-            transform: translateY(-10px);
-        }
+.penelitian-item:hover {
+    transform: translateY(-10px);
+}
 
-        .penelitian-item h3 {
-            color: #388e3c;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
+.penelitian-item h3 {
+    color: #388e3c;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
 
-        .penelitian-item p {
-            color: #555;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
+.penelitian-item p {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
 
-        .penelitian-item a {
-            display: inline-block;
-            color: #388e3c;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
+.penelitian-item a {
+    display: inline-block;
+    color: #388e3c;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
 
-        .penelitian-item a:hover {
-            color: #66bb6a;
-        }
+.penelitian-item a:hover {
+    color: #66bb6a;
+}
 
-        /* Kartu Tips Kesehatan */
-        .health-tips-card {
-            border-radius: 8px;
-            border: 1px solid #388e3c;
-            margin-bottom: 30px;
-        }
+/* Kartu Tips Kesehatan */
+.health-tips-card {
+    border-radius: 8px;
+    border: 1px solid #388e3c;
+    margin-bottom: 30px;
+}
 
-        .health-tips-card h5 {
-            color: #388e3c;
-        }
+.health-tips-card h5 {
+    color: #388e3c;
+}
 
-        .health-tips-card p {
-            color: #555;
-        }
+.health-tips-card p {
+    color: #555;
+}
 
-        .cta-section {
-            background-color: #388e3c;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 50px;
-            border-radius: 8px;
-        }
+.cta-section {
+    background-color: #388e3c;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 50px;
+    border-radius: 8px;
+}
 
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
 
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
+.cta-section p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
 
-        .cta-section button {
-            padding: 15px 30px;
-            background-color: #66bb6a;
-            color: white;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
+.cta-section button {
+    padding: 15px 30px;
+    background-color: #66bb6a;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
 
-        .cta-section button:hover {
-            background-color: #388e3c;
-        }
+.cta-section button:hover {
+    background-color: #388e3c;
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 768px) {
+    #hero {
+        padding: 60px 20px;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    #hero button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .penelitian-item {
+        padding: 15px;
+    }
+
+    .penelitian-item h3 {
+        font-size: 1rem;
+    }
+
+    .penelitian-item p {
+        font-size: 0.85rem;
+    }
+
+    .cta-section {
+        padding: 40px 20px;
+    }
+
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+
+    .cta-section button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    /* Kamera section */
+    #camera-container {
+        padding: 30px 20px;
+    }
+
+    #camera-video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Navbar adjustments */
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .navbar-nav .nav-item {
+        text-align: center;
+    }
+
+    .navbar-toggler {
+        border: 1px solid #388e3c;
+    }
+}
 
     </style>
 </head>
